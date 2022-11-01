@@ -1,0 +1,75 @@
+ERROR   2022-10-31 21:32:04,881 [main] main.connection.Database  - Error1
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: La base de datos puede que ya esté siendo utilizada: "C:/Users/Agustina/h2-database2.mv.db". Soluciones Posibles: cierre todas las otras conexiones; use el modo server
+Database may be already in use: "C:/Users/Agustina/h2-database2.mv.db". Possible solutions: close all other connection(s); use the server mode [90020-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:168)
+	at org.h2.mvstore.db.Store.<init>(Store.java:145)
+	at org.h2.engine.Database.<init>(Database.java:324)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:683)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at main.connection.Database.getConnection(Database.java:18)
+	at main.Main.main(Main.java:42)
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/Agustina/h2-database2.mv.db [2.1.214/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	at org.h2.mvstore.FileStore.open(FileStore.java:178)
+	at org.h2.mvstore.FileStore.open(FileStore.java:128)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:452)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:4082)
+	at org.h2.mvstore.db.Store.<init>(Store.java:136)
+	... 11 more
+ERROR   2022-10-31 21:32:04,884 [main] main.Main  - An error has occurred
+ERROR   2022-10-31 21:34:36,127 [main] main.Main  - An error has occurred
+ERROR   2022-10-31 21:35:26,586 [main] main.Main  - An error has occurred
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "CREATE TABLE PATIENT ( ID INT PRIMARY KEY, SURNAME varchar(100) NOT NULL,  NAME varchar(100) NOT NULL,  ADDRESS varchar(100) NOT NULL,  DNI varchar(100) NOT NULL,  REGISTRATIONDATE date NOT NULL,  [*])"; se esperaba "identifier"
+Syntax error in SQL statement "CREATE TABLE PATIENT ( ID INT PRIMARY KEY, SURNAME varchar(100) NOT NULL,  NAME varchar(100) NOT NULL,  ADDRESS varchar(100) NOT NULL,  DNI varchar(100) NOT NULL,  REGISTRATIONDATE date NOT NULL,  [*])"; expected "identifier"; SQL statement:
+CREATE TABLE PATIENT ( ID INT PRIMARY KEY, SURNAME varchar(100) NOT NULL,  NAME varchar(100) NOT NULL,  ADDRESS varchar(100) NOT NULL,  DNI varchar(100) NOT NULL,  REGISTRATIONDATE date NOT NULL,  ) [42001-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.getSyntaxError(DbException.java:261)
+	at org.h2.command.Parser.readIdentifier(Parser.java:5656)
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:9326)
+	at org.h2.command.Parser.parseCreateTable(Parser.java:9271)
+	at org.h2.command.Parser.parseCreate(Parser.java:6784)
+	at org.h2.command.Parser.parsePrepared(Parser.java:763)
+	at org.h2.command.Parser.parse(Parser.java:689)
+	at org.h2.command.Parser.parse(Parser.java:661)
+	at org.h2.command.Parser.prepareCommand(Parser.java:569)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.command.CommandList.executeRemaining(CommandList.java:53)
+	at org.h2.command.CommandList.update(CommandList.java:66)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at main.Main.main(Main.java:55)
+ERROR   2022-10-31 21:36:11,158 [main] main.Main  - An error has occurred
+org.h2.jdbc.JdbcSQLSyntaxErrorException: La cantidad de columnas no coincide
+Column count does not match; SQL statement:
+INSERT INTO PATIENT (ID, SURNAME, NAME, ADDRESS, DNI, REGISTRATIONDATE) VALUES (1, 'Fernandez', 'Matias', '6789abc') [21002-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.command.dml.Insert.doPrepare(Insert.java:295)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:575)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:237)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at main.Main.main(Main.java:58)
+INFO    2022-10-31 21:47:20,796 [main] main.Main  - 1 - Fernandez - Matias - Avenida siempre viva - 6789abc - 2022-11-01
+INFO    2022-10-31 21:47:20,797 [main] main.Main  - 2 - Garcia - Malena - Calle false 123 - 223344abc - 2022-11-02
+INFO    2022-10-31 21:51:28,873 [main] main.Main  - 1 - Fernandez - Matias - Avenida siempre viva - 6789abc - 2022-11-01
+INFO    2022-10-31 21:51:28,874 [main] main.Main  - 2 - Garcia - Malena - Calle false 123 - 223344abc - 2022-11-02
+INFO    2022-10-31 21:53:25,352 [main] main.Main  - 1 - Fernandez - Matias - Avenida siempre viva - 6789abc - 2022-11-01
+INFO    2022-10-31 21:53:25,354 [main] main.Main  - 2 - Garcia - Malena - Calle false 123 - 223344abc - 2022-11-02
